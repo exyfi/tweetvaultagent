@@ -1,6 +1,6 @@
-# Hermes
+# tweetvault
 
-![Hermes](docs/social-card.png)
+![tweetvault](docs/social-card.png)
 
 A Telegram bot that reads your saved posts out loud, one at a time, and refuses to
 mark one as done until you pass a test on it.
