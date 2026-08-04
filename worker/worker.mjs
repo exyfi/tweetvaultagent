@@ -518,7 +518,7 @@ async function handleUpdate(update, env) {
   if (call) {
     const word = (call[1] ?? "").trim().toLowerCase().replace(/[уи]$/, "а");
     const lane = word ? Object.keys(LANES).find((k) => k.startsWith(word.slice(0, 5))) ?? null : null;
-    // Слово не похоже на дорожку — считаем его ником автора: «го dankoe»
+    // Слово не похоже на дорожку — считаем его ником автора: «го levelsio»
     const author = !lane && word ? call[1].trim().replace(/^@/, "") : null;
     return void (await enqueueJob(env, { type: "spoken", chatId: meta.owner_chat_id, opts: { lane, author } }));
   }
@@ -635,7 +635,7 @@ export const LANES = {
   разбор: ["grift"], // посты-обещания: понять приём, а не поверить
 };
 
-// lane — дорожка, author — кусок ника («го dankoe»)
+// lane — дорожка, author — кусок ника («го levelsio»)
 export function pickSpoken(queue, index, { lane = null, author = null } = {}) {
   const goals = lane ? LANES[lane] : null;
   const needle = author?.toLowerCase();
