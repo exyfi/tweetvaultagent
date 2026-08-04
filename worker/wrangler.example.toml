@@ -1,0 +1,31 @@
+# Copy to wrangler.toml and fill in your own values.
+name = "hermes-bookmarks"
+main = "worker.mjs"
+compatibility_date = "2026-07-01"
+
+[vars]
+PUBLIC_URL = "https://hermes-bookmarks.<your-subdomain>.workers.dev"
+OPENAI_MODEL = "gpt-5.5"        # writer + editor
+OPENAI_EFFORT = "medium"
+TTS_PROVIDER = "elevenlabs"     # falls back to OpenAI TTS on any failure
+VOICE_ID = "pNInz6obpgDQGcFmaJgB"   # ElevenLabs voice; pick one in your language
+AUDIO_MODE = "audio"            # "voice" for voice notes, "audio" for files
+# TRANSCRIBE_VIDEO = "1"        # optional: transcribe video posts (costs extra)
+
+[triggers]
+crons = ["0 7 * * *", "0 9 * * SUN"]   # daily digest 07:00 UTC, weekly Sunday 09:00
+
+[[kv_namespaces]]
+binding = "VAULT"
+id = "<your-kv-namespace-id>"
+
+# Long jobs (breakdown + TTS take 40-90s). ctx.waitUntil dies at ~30s, queues get 15 min.
+[[queues.producers]]
+binding = "JOBS"
+queue = "hermes-jobs"
+
+[[queues.consumers]]
+queue = "hermes-jobs"
+max_batch_size = 1
+max_batch_timeout = 1
+max_retries = 1

@@ -1,0 +1,12 @@
+wrangler.toml
+worker/wrangler.toml
+.dev.vars
+*.key
+.*_key
+.*_token
+.*_secret
+node_modules/
+*.bak
+.DS_Store
+data/*.json
+!data/*.example.json
