@@ -69,7 +69,7 @@ Needs a Cloudflare account (Workers Paid, $5/mo, for the queue and write limits)
 Telegram bot token, an OpenAI key, and optionally an ElevenLabs key for better voice.
 
 ```bash
-git clone https://github.com/exyfi/hermes-bookmarks && cd hermes-bookmarks/worker
+git clone https://github.com/exyfi/tweetvaultagent && cd tweetvaultagent/worker
 cp wrangler.example.toml wrangler.toml     # fill in name, KV id, PUBLIC_URL, voice
 
 npx wrangler kv namespace create VAULT     # put the id into wrangler.toml
